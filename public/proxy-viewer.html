@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>August's Pretty Cool Website</title>
+    <link href="./Assets/CSS/style.css" type="text/css">
+</head>
+<body class="default" style="background-color:orange;">
+<iframe id="iframeid"></iframe>
+
+<script src="https://kit.fontawesome.com/25552dd253.js" crossorigin="anonymous"></script>
+<script>
+    let timeout;
+    const nav = document.getElementById('proxynav');
+    const navHeight = nav.offsetHeight;
+    const screenHeight = window.innerHeight;
+
+    function slideNavOff() {
+        nav.style.transform = 'translate(-50%, -' + navHeight + 'px)';
+    }
+
+    function slideNavIn() {
+        nav.style.transform = 'translate(-50%, 0)';
+    }
+
+    function resetTimer() {
+        clearTimeout(timeout);
+        slideNavIn();
+        timeout = setTimeout(slideNavOff, 5000);
+    }
+
+    // Add event listeners to handle mouseover and mouseout events on the entire document
+    document.addEventListener('mouseover', resetTimer);
+    document.addEventListener('mouseout', resetTimer);
+
+    // Initial call to start the timer
+    resetTimer();
+
+    function reload() {
+        document.getElementById("iframeid").src = document.getElementById("iframeid").src
+    }
+
+    function erudaToggle() {
+        const proccy = document.getElementById("iframeid");
+        if (!proccy) return;
+
+        const proccyWindow = proccy.contentWindow;
+        const proccyDocument = proccy.contentDocument;
+
+        if (!proccyWindow || !proccyDocument) return;
+
+        if (proccyWindow.eruda?._isInit) {
+            proccyWindow.eruda.destroy();
+        } else {
+            let script = proccyDocument.createElement('script');
+            script.src = "https://cdn.jsdelivr.net/npm/eruda";
+            script.onload = function () {
+                if (!proccyWindow) return;
+                proccyWindow.eruda.init();
+                proccyWindow.eruda.show();
+            }
+            proccyDocument.head.appendChild(script);
+        }
+    }
+
+    window.onload = function () {
+        let encodedUrl = sessionStorage.getItem("encodedUrl");
+        encodedUrl = "/uv/service/" + encodedUrl;
+        console.log(encodedUrl);
+        document.querySelector("#iframeid").src = encodedUrl;
+        let iframe = document.querySelector("#iframeId");
+        iframe.src = encodedUrl;
+    };
+</script>
+</body>
+</html>

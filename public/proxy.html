@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>August's Pretty Cool Website</title>
+    <link href="./Assets/CSS/style.css" type="text/css">
+</head>
+<body class="default" style="background-color:orange;">
+<h1>Proxy</h1>
+<div class="center-container">
+    <center style="padding: 2em 0 0 0">
+        <form id="uv-form" class="flex-center">
+            <input
+                    id="uv-search-engine"
+                    value="https://www.google.com/search?q=%s"
+                    type="hidden"
+            />
+            <center style="padding: 2em 1 0 0">
+                <input id="uv-address" type="text" placeholder="Search the web freely..."/>
+        </form>
+        <div class="desc left-margin">
+            <p id="uv-error"></p>
+            <pre id="uv-error-code"></pre>
+        </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WKJQ5QHQTJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-WKJQ5QHQTJ');
+</script>
+</body>
+</html>
